@@ -33,6 +33,9 @@ public class OrderPage {
     private By commentOrder = By.cssSelector(".Input_Input__1iN_Z.Input_Responsible__1jDKN[placeholder='Комментарий для курьера']");
     private By finalOrderButton = By.xpath(".//button[contains(@class,'Button_Button__ra12g Button_Middle__1CSJM') and normalize-space(text())='Заказать']");
     private By yesButton = By.xpath(".//button[contains(@class,'Button_Button__ra12g Button_Middle__1CSJM') and normalize-space(text())='Да']");
+    private By dropDownList = By.xpath("//div[@class='select-search__select']//div");
+    private By popUpSearch = By.cssSelector(".Order_Text__2broi");
+
     public void addUserName(String nameField) {
         driver.findElement(userName).sendKeys(nameField);
     }
@@ -44,62 +47,71 @@ public class OrderPage {
     }
     public void addStationMetro(String stationName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.IMLICITY_TIMOUT));
-
-        // Кликаем по полю, чтобы открыть список
-        WebElement dropdownField = wait.until(ExpectedConditions.elementToBeClickable(stationMetroSelect));
-        dropdownField.click();
-
-        // Ждём появления списка опций
-        By optionsLocator = By.xpath("//div[@class='select-search__select']//div"); // замените на актуальный локатор
-        wait.until(ExpectedConditions.visibilityOfElementLocated(optionsLocator));
-
-        // Ищем нужную опцию по тексту
-        List<WebElement> options = driver.findElements(optionsLocator);
+        WebElement dropdownField = wait
+                .until(ExpectedConditions.elementToBeClickable(stationMetroSelect));
+        dropdownField
+                .click();
+            wait
+                .until(ExpectedConditions.visibilityOfElementLocated(dropDownList));
+        List<WebElement> options = driver.findElements(dropDownList);
         for (WebElement option : options) {
-            if (option.getText().equals(stationName)) {
-                option.click();
+            if (option
+                    .getText().equals(stationName)) {
+                option
+                        .click();
                 break;
             }
         }
     }
     public void addTeleNumber(String number){
-        driver.findElement(teleNumber).sendKeys(number);
+        driver.findElement(teleNumber)
+                .sendKeys(number);
     }
     public void clickNextButton(){
-        driver.findElement(nextButton).click();
+        driver.findElement(nextButton)
+                .click();
     }
     public void addDateOrder(String date){
-        driver.findElement(dateOrder).sendKeys(date);
+        driver.findElement(dateOrder)
+                .sendKeys(date);
     }
     public void clickDropdown(){
-        driver.findElement(dropdownControl).click();
+        driver.findElement(dropdownControl)
+                .click();
     }
     public void clickSelectTwoDay(){
-        driver.findElement(selectTwoDay).click();
+        driver.findElement(selectTwoDay)
+                .click();
     }
     public void clickSelectFiveDay(){
-        driver.findElement(selectFiveDay).click();
+        driver.findElement(selectFiveDay)
+                .click();
     }
     public void clickBlackColor(){
-        driver.findElement(selectBlackColor).click();
+        driver.findElement(selectBlackColor)
+                .click();
     }
     public void clickGreyColor(){
-        driver.findElement(selectGrayColor).click();
+        driver.findElement(selectGrayColor)
+                .click();
     }
     public void addComment(String comment){
-        driver.findElement(commentOrder).sendKeys(comment);
+        driver.findElement(commentOrder)
+                .sendKeys(comment);
     }
     public void orderScooter(){
-        driver.findElement(finalOrderButton).click();
+        driver.findElement(finalOrderButton)
+                .click();
     }
     public void clickYesButton(){
-        driver.findElement(yesButton).click();
+        driver.findElement(yesButton)
+                .click();
     }
     public void checkOrder() {
-        By popUp = By.cssSelector(".Order_Text__2broi");
+
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.EXPICITY_TIMOUT))
-                .until(ExpectedConditions.visibilityOfElementLocated(popUp));
-        Assert.assertTrue("Окно ошибки не отображается", driver.findElement(popUp).isDisplayed());
+                .until(ExpectedConditions.visibilityOfElementLocated(popUpSearch));
+        Assert.assertTrue("Окно ошибки не отображается", driver.findElement(popUpSearch).isDisplayed());
     }
 
 }
