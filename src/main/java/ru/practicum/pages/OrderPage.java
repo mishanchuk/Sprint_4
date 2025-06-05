@@ -34,7 +34,7 @@ public class OrderPage {
     private By finalOrderButton = By.xpath(".//button[contains(@class,'Button_Button__ra12g Button_Middle__1CSJM') and normalize-space(text())='Заказать']");
     private By yesButton = By.xpath(".//button[contains(@class,'Button_Button__ra12g Button_Middle__1CSJM') and normalize-space(text())='Да']");
     private By dropDownList = By.xpath("//div[@class='select-search__select']//div");
-    private By popUpSearch = By.cssSelector(".Order_Text__2broi");
+    private By popUpSearch = By.xpath(".//button[contains(@class,'Button_Button__ra12g Button_Middle__1CSJM') and normalize-space(text())='Посмотреть статус']");
 
     public void addUserName(String nameField) {
         driver.findElement(userName).sendKeys(nameField);
