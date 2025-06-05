@@ -15,11 +15,11 @@ public class DriverFactory extends ExternalResource {
     private WebDriver driver;
 
     public void initDriver(){
-        if("firefox".equals(System.getProperty("browser"))) {
-            startFirefox();
+        if("chrome".equals(System.getProperty("browser"))) {
+            startChrome();
 
         }else{
-            startChrome();
+            startFirefox();
 
         }
     }

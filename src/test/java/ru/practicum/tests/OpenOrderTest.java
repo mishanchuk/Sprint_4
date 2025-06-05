@@ -13,15 +13,28 @@ public class OpenOrderTest {
     public DriverFactory driverFactory = new DriverFactory();
 
     @Test
-    public void clickOrderTest() throws InterruptedException {
+    public void openMainTest() throws InterruptedException {
         WebDriver driver = driverFactory.getDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
         assertTrue("Главная страница не загрузилась", mainPage.isPageLoaded());
-        mainPage.activityButtonUp();
-        assertTrue("Кнопка вверх не сработала", mainPage.isActivityButtonUpVisible());
-        mainPage.openMainPage();
-        mainPage.activityButtonDown();
-        assertTrue("Кнопка вниз не сработала", mainPage.isActivityButtonDownVisible());
     }
+
+@Test
+public void clickOrderUpTest() throws InterruptedException {
+    WebDriver driver = driverFactory.getDriver();
+    MainPage mainPage = new MainPage(driver);
+    mainPage.openMainPage();
+    mainPage.activityButtonUp();
+    assertTrue("Кнопка вверх не сработала", mainPage.isActivityButtonUpVisible());
+}
+
+@Test
+public void clickOrderDownTest() throws InterruptedException {
+    WebDriver driver = driverFactory.getDriver();
+    MainPage mainPage = new MainPage(driver);
+    mainPage.openMainPage();
+    mainPage.activityButtonDown();
+    assertTrue("Кнопка вниз не сработала", mainPage.isActivityButtonDownVisible());
+}
 }
